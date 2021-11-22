@@ -68,6 +68,8 @@ const createCollege = asyncHandler(async (req, res) => {
     user: req.user._id,
     image: "/images/sample.jpg",
     description: "Sample description",
+    dataset: "samplecsv",
+    collegelink:"collegelink"
   });
 
   const createdCollege = await college.save();
@@ -90,6 +92,8 @@ const updateCollege = asyncHandler(async (req, res) => {
     college.name = name;
     college.description = description;
     college.image = image;
+    college.dataset = dataset;
+    college.collegelink = collegelink;
 
     const updatedCollege = await college.save();
     res.json(updatedCollege);
