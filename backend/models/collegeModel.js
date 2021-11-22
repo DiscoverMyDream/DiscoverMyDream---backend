@@ -20,6 +20,14 @@ const collegeSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    collegelink: {
+      type: String,
+      required: true,
+    },
+    dataset: {
+      type: String,
+      required: true,
+    },
 
   },
   {
