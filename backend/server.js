@@ -6,8 +6,8 @@ import connectDB from "./config/db.js";
 import morgan from 'morgan'
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import userRoutes from "./routes/userRoutes.js";
-import collegeRoutes from "./routes/collegeRoutes,js"
-
+import collegeRoutes from "./routes/collegeRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 
 
 dotenv.config();
