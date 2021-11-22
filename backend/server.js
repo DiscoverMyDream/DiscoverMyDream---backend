@@ -8,8 +8,8 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import userRoutes from "./routes/userRoutes.js";
 import collegeRoutes from "./routes/collegeRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
-
-
+//const cors= require('cors');
+import cors from "cors";
 dotenv.config();
 
 connectDB();
@@ -22,6 +22,13 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+app.use(cors({
+  origin: '*'
+}));
 app.get("/", (req, res) => {
   res.send("API is running....");
 });
