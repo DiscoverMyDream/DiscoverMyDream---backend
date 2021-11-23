@@ -34,7 +34,7 @@ const getColleges = asyncHandler(async (req, res) => {
 // @access  Public
 
 const getCollegeById = asyncHandler(async (req, res) => {
-  const college = await Product.findById(req.params.id);
+  const college = await College.findById(req.params.id);
 
   if (college) {
     res.json(college);
@@ -64,12 +64,12 @@ const deleteCollege = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const createCollege = asyncHandler(async (req, res) => {
   const college = new College({
-    name: "Sample name",
+    name: req.body.name,
     user: req.user._id,
-    image: "/images/sample.jpg",
-    description: "Sample description",
-    dataset: "samplecsv",
-    collegelink:"collegelink"
+    image: req.body.image,
+    description: req.body.description,
+    dataset: req.body.dataset,
+    collegelink: req.body.collegelink
   });
 
   const createdCollege = await college.save();
@@ -84,6 +84,8 @@ const updateCollege = asyncHandler(async (req, res) => {
     name,
     description,
     image,
+    dataset,
+    collegelink
   } = req.body;
 
   const college = await College.findById(req.params.id);
