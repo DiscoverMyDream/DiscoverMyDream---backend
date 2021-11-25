@@ -63,13 +63,25 @@ const deleteCollege = asyncHandler(async (req, res) => {
 // @route   POST /api/colleges
 // @access  Private/Admin
 const createCollege = asyncHandler(async (req, res) => {
+  const {
+    name,
+    description,
+    image,
+    dataset,
+    collegelink
+  } = req.body;
+  const collegeExists = await College.findOne({ name });
+
+  if (collegeExists) {
+    res.status(400);
+    throw new Error("College already exists");
+  }
   const college = new College({
-    name: req.body.name,
-    user: req.user._id,
-    image: req.body.image,
-    description: req.body.description,
-    dataset: req.body.dataset,
-    collegelink: req.body.collegelink
+    name: name,
+    image: image,
+    description: description,
+    dataset: dataset,
+    collegelink: collegelink
   });
 
   const createdCollege = await college.save();
